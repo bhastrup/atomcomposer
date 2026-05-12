@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install ruff
+      - run: ruff check .
+      - run: ruff format --check .
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          pip install torch==2.1.1 --index-url https://download.pytorch.org/whl/cpu
+          pip install ase rdkit gymnasium numpy==1.24.2 pandas pytest tqdm submitit
+      - name: Run tests
+        env:
+          PYTHONPATH: .
+        run: |
+          pytest \
+            --ignore=tests/test_energetics.py \
+            --ignore=tests/test_metrics.py \
+            --ignore=tests/test_pretraining.py \
+            --ignore=tests/test_cumulative.py \
+            --ignore=tests/test_single_cpkt.py \
+            -v

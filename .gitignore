@@ -1,0 +1,63 @@
+# IDE
+.idea/
+
+# mypy
+.mypy_cache/
+.pytest_cache/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Distribution and packaging
+*.egg-info/
+.eggs/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Ignore everything in the data/ directory
+data/*
+!src/data/
+!src/data/*
+
+log/
+tf_log/
+output/
+outputs/
+*.out
+
+logs/
+results/
+runs/
+pretrain_runs/
+slurm_outputs/
+submitit_logs/
+sublog*
+
+*.prof
+*.traj
+*.xyz
+*.1
+*.log
+*prof*
+
+wandb/
+from_niflheim/
+xtb-python/
+saved_playgrounds/
+app_store/pages/trash/
+visualization_outputs/
+version-0/
+c-profile/
+SCRATCH/
+junk/
+cormorant/
+build/
+
+kill*
+nul
+Pipfile
+.env
+temp_ASE_optimizer_log_file
